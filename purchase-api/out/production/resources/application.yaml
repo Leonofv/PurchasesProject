@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: purchase-api
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/purchase
+    username: postgres
+    password: postgres
+  jooq:
+    sql-dialect: POSTGRES
+app:
+  cors:
+    allowed-origins: http://localhost:3000

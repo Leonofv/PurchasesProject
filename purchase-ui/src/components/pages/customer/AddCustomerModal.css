@@ -1,0 +1,15 @@
+.modalContainer {
+  padding: 20px;
+}
+
+.errorMessage {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}

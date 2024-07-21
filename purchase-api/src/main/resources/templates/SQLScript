@@ -1,0 +1,26 @@
+CREATE TABLE customer (
+    id SERIAL PRIMARY KEY,
+    customer_code VARCHAR(255) UNIQUE NOT NULL,
+    customer_name VARCHAR(255) NOT NULL,
+    customer_inn VARCHAR(12) UNIQUE NOT NULL,
+    customer_kpp VARCHAR(9) UNIQUE NOT NULL,
+    customer_legal_address VARCHAR(255) NOT NULL,
+    customer_postal_address VARCHAR(255) NOT NULL,
+    customer_email VARCHAR(255),
+    customer_code_main VARCHAR(255),
+    is_organization BOOLEAN DEFAULT FALSE,
+    is_person BOOLEAN DEFAULT FALSE,
+    CONSTRAINT fk_customer_code_main FOREIGN KEY (customer_code_main) REFERENCES customer(customer_code)
+);
+
+CREATE TABLE lot (
+    id SERIAL PRIMARY KEY,
+    lot_name VARCHAR(255) NOT NULL,
+    customer_code VARCHAR(255) NOT NULL,
+    price NUMERIC(18, 2) NOT NULL,
+    currency_code VARCHAR(3) CHECK (currency_code IN ('RUB', 'USD', 'EUR')) NOT NULL,
+    nds_rate VARCHAR(10) CHECK (nds_rate IN ('Без НДС', '18%', '20%')),
+    place_delivery VARCHAR(255) NOT NULL,
+    date_delivery TIMESTAMP NOT NULL,
+    CONSTRAINT fk_customer_code FOREIGN KEY (customer_code) REFERENCES customer(customer_code)
+);
